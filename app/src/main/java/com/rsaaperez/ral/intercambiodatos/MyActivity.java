@@ -53,15 +53,19 @@ public class MyActivity extends Activity {
                     //mostrar toast
                     showToast();
                 }
+                boolean comp = false;
                 Agenda contacto = new Agenda();
                 for (int i = 0; i < agenda.size(); i++) {
                     if (agenda.get(i).getNombre().equalsIgnoreCase(eENombre.getText().toString())) {
                         contacto = new Agenda(agenda.get(i).getNombre(), agenda.get(i).getTelefono());
                         intento.putExtra("id1", contacto);
                         startActivityForResult(intento, 1);
-                    } else {
-                        showMal();
+                        comp = true;
+                        break;
                     }
+                }
+                if (!comp) {
+                    showMal();
                 }
 
             }
@@ -114,9 +118,15 @@ public class MyActivity extends Activity {
             EditText eENombre = (EditText) findViewById(R.id.eENombre);
             eNombre.setText("");
             eTelefono.setText("");
-            eENombre.setText("");
+
             Agenda contacto = (Agenda) data.getSerializableExtra("id2");
-            agenda.add(contacto);
+            for (int i = 0; i < agenda.size(); i++) {
+                if(agenda.get(i).getNombre().equalsIgnoreCase(eENombre.getText().toString())){
+                    agenda.get(i).setNombre(contacto.getNombre());
+                    agenda.get(i).setTelefono(contacto.getTelefono());
+                }
+            }
+            eENombre.setText("");
             // enseñamos al usuario el resultado
             Context context = getApplicationContext();
             CharSequence text = "Nombre: " + contacto.getNombre() + " Telefono: " + String.valueOf(contacto.getTelefono());
