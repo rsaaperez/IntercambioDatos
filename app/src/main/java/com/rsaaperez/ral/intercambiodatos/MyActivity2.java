@@ -36,16 +36,16 @@ public class MyActivity2 extends Activity {
             @Override
             public void onClick(View v) {
                 // comprobar si existe nombre
-                if ("".equalsIgnoreCase(eNombre.getText().toString().trim())||"".equalsIgnoreCase(eTelefono.getText().toString().trim())) {
+                if ("".equalsIgnoreCase(eNombre.getText().toString().trim()) || "".equalsIgnoreCase(eTelefono.getText().toString().trim())) {
                     //mostrar toast
                     showToast();
                     return;
+                } else {
+                    Agenda contacto = new Agenda(eNombre.getText().toString(), Integer.parseInt(eTelefono.getText().toString()));
+                    intento.putExtra("id2", contacto);
+                    setResult(RESULT_OK, intento);
+                    finish();
                 }
-                Agenda contacto = new Agenda(eNombre.getText().toString(),Integer.parseInt(eTelefono.getText().toString()));
-                intento.putExtra("id2", contacto);
-                setResult(RESULT_OK,intento);
-                finish();
-
             }
         });
 
@@ -69,6 +69,7 @@ public class MyActivity2 extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     protected void showToast() {
         Context context = getApplicationContext();
         CharSequence text = getResources().getString(R.string.noNameMsg);

@@ -38,10 +38,11 @@ public class MyActivity extends Activity {
                 if ("".equals(eNombre.getText().toString()) || "".equals(eTelefono.getText().toString())) {
                     //mostrar toast
                     showToast();
+                } else {
+                    agenda.add(new Agenda(eNombre.getText().toString(), Integer.parseInt(eTelefono.getText().toString())));
+                    eNombre.setText("");
+                    eTelefono.setText("");
                 }
-                agenda.add(new Agenda(eNombre.getText().toString(), Integer.parseInt(eTelefono.getText().toString())));
-                eNombre.setText("");
-                eTelefono.setText("");
             }
         });
         bEditar.setOnClickListener(new View.OnClickListener() {
@@ -52,22 +53,22 @@ public class MyActivity extends Activity {
                 if ("".equals(eENombre.getText().toString())) {
                     //mostrar toast
                     showToast();
-                }
-                boolean comp = false;
-                Agenda contacto = new Agenda();
-                for (int i = 0; i < agenda.size(); i++) {
-                    if (agenda.get(i).getNombre().equalsIgnoreCase(eENombre.getText().toString())) {
-                        contacto = new Agenda(agenda.get(i).getNombre(), agenda.get(i).getTelefono());
-                        intento.putExtra("id1", contacto);
-                        startActivityForResult(intento, 1);
-                        comp = true;
-                        break;
+                } else {
+                    boolean comp = false;
+                    Agenda contacto = new Agenda();
+                    for (int i = 0; i < agenda.size(); i++) {
+                        if (agenda.get(i).getNombre().equalsIgnoreCase(eENombre.getText().toString())) {
+                            contacto = new Agenda(agenda.get(i).getNombre(), agenda.get(i).getTelefono());
+                            intento.putExtra("id1", contacto);
+                            startActivityForResult(intento, 1);
+                            comp = true;
+                            break;
+                        }
+                    }
+                    if (!comp) {
+                        showMal();
                     }
                 }
-                if (!comp) {
-                    showMal();
-                }
-
             }
         });
     }
@@ -121,7 +122,7 @@ public class MyActivity extends Activity {
 
             Agenda contacto = (Agenda) data.getSerializableExtra("id2");
             for (int i = 0; i < agenda.size(); i++) {
-                if(agenda.get(i).getNombre().equalsIgnoreCase(eENombre.getText().toString())){
+                if (agenda.get(i).getNombre().equalsIgnoreCase(eENombre.getText().toString())) {
                     agenda.get(i).setNombre(contacto.getNombre());
                     agenda.get(i).setTelefono(contacto.getTelefono());
                 }
