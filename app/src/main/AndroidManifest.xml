@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MyActivity"
+            android:name="com.rsaaperez.ral.intercambiodatos.MyActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,8 +17,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MyActivity2"
+            android:name="com.rsaaperez.ral.intercambiodatos.MyActivity2"
             android:label="@string/title_activity_my_activity2" >
+        </activity>
+        <activity
+            android:name="com.rsaaperez.ral.intercambiodatos.ListaActivity"
+            android:label="@string/title_activity_lista" >
         </activity>
     </application>
 

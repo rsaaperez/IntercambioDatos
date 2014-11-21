@@ -25,9 +25,9 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
 
-        final Intent intento = new Intent(MyActivity.this, MyActivity2.class);
+        final Intent intento = new Intent(MyActivity.this, ListaActivity.class);
         Button bAnhadir = (Button) findViewById(R.id.bAnhadir);
-        Button bEditar = (Button) findViewById(R.id.bEditar);
+        Button bListar = (Button) findViewById(R.id.bListar);
 
         bAnhadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,30 +45,12 @@ public class MyActivity extends Activity {
                 }
             }
         });
-        bEditar.setOnClickListener(new View.OnClickListener() {
+        bListar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText eENombre = (EditText) findViewById(R.id.eENombre);
-                // comprobar si existe nombre
-                if ("".equals(eENombre.getText().toString())) {
-                    //mostrar toast
-                    showToast();
-                } else {
-                    boolean comp = false;
-                    Agenda contacto = new Agenda();
-                    for (int i = 0; i < agenda.size(); i++) {
-                        if (agenda.get(i).getNombre().equalsIgnoreCase(eENombre.getText().toString())) {
-                            contacto = new Agenda(agenda.get(i).getNombre(), agenda.get(i).getTelefono());
-                            intento.putExtra("id1", contacto);
-                            startActivityForResult(intento, 1);
-                            comp = true;
-                            break;
-                        }
-                    }
-                    if (!comp) {
-                        showMal();
-                    }
-                }
+                ArrayList<Agenda> ag = agenda;
+                intento.putExtra("id1", ag);
+                startActivityForResult(intento, 1);
             }
         });
     }
@@ -101,36 +83,22 @@ public class MyActivity extends Activity {
         toast.show();
     }
 
-    protected void showMal() {
-        Context context = getApplicationContext();
-        CharSequence text = getResources().getString(R.string.mal);
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             // cogemos el valor devuelto por la otra actividad
-            EditText eNombre = (EditText) findViewById(R.id.eNombre);
-            EditText eTelefono = (EditText) findViewById(R.id.eTelefono);
-            EditText eENombre = (EditText) findViewById(R.id.eENombre);
-            eNombre.setText("");
-            eTelefono.setText("");
-
-            Agenda contacto = (Agenda) data.getSerializableExtra("id2");
+            Agenda modificado = (Agenda) data.getSerializableExtra("id6");
+            Agenda contacto = (Agenda) data.getSerializableExtra("id7");
             for (int i = 0; i < agenda.size(); i++) {
-                if (agenda.get(i).getNombre().equalsIgnoreCase(eENombre.getText().toString())) {
-                    agenda.get(i).setNombre(contacto.getNombre());
-                    agenda.get(i).setTelefono(contacto.getTelefono());
+                if (agenda.get(i).getNombre().equalsIgnoreCase(contacto.getNombre().toString())) {
+                    agenda.get(i).setNombre(modificado.getNombre());
+                    agenda.get(i).setTelefono(modificado.getTelefono());
                 }
             }
-            eENombre.setText("");
             // enseñamos al usuario el resultado
             Context context = getApplicationContext();
-            CharSequence text = "Nombre: " + contacto.getNombre() + " Telefono: " + String.valueOf(contacto.getTelefono());
+            CharSequence text = "Nombre: " + modificado.getNombre() + " Telefono: " + String.valueOf(modificado.getTelefono());
             int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();

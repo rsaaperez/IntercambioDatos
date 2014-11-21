@@ -24,10 +24,11 @@ public class MyActivity2 extends Activity {
 
         final Intent intento = new Intent(MyActivity2.this, MyActivity.class);
 
-        Agenda contacto = (Agenda) getIntent().getSerializableExtra("id1");
+        final Agenda contacto = (Agenda) getIntent().getSerializableExtra("id2");
         final EditText eNombre = (EditText) findViewById(R.id.eNombre);
         final EditText eTelefono = (EditText) findViewById(R.id.eTelefono);
         Button bEditar = (Button) findViewById(R.id.bEEditar);
+        final ArrayList<Agenda> contactos = (ArrayList<Agenda>) getIntent().getSerializableExtra("id3");
 
         eNombre.setText(contacto.getNombre());
         eTelefono.setText(String.valueOf(contacto.getTelefono()));
@@ -35,14 +36,21 @@ public class MyActivity2 extends Activity {
         bEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // comprobar si existe nombre
+                 //comprobar si existe nombre
                 if ("".equalsIgnoreCase(eNombre.getText().toString().trim()) || "".equalsIgnoreCase(eTelefono.getText().toString().trim())) {
                     //mostrar toast
                     showToast();
                     return;
                 } else {
-                    Agenda contacto = new Agenda(eNombre.getText().toString(), Integer.parseInt(eTelefono.getText().toString()));
-                    intento.putExtra("id2", contacto);
+                    for (int i = 0; i < contactos.size(); i++) {
+                        if (contactos.get(i).getNombre().equalsIgnoreCase(contacto.getNombre().toString())) {
+                            contactos.get(i).setNombre(eNombre.getText().toString());
+                            contactos.get(i).setTelefono(Integer.parseInt(eTelefono.getText().toString()));
+                        }
+                    }
+                    Agenda modificado = new Agenda(eNombre.getText().toString(),Integer.parseInt(eTelefono.getText().toString()));
+                    intento.putExtra("id4", modificado);
+                    intento.putExtra("id5",contacto);
                     setResult(RESULT_OK, intento);
                     finish();
                 }

@@ -32,4 +32,9 @@ public class Agenda implements Serializable {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre: "+nombre+"\n  "+"Teléfono: "+telefono;
+    }
 }
