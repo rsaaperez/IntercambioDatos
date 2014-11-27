@@ -92,6 +92,7 @@ public class MyActivity extends Activity {
             Agenda contacto = (Agenda) data.getSerializableExtra("id7");
             for (int i = 0; i < agenda.size(); i++) {
                 if (agenda.get(i).getNombre().equalsIgnoreCase(contacto.getNombre().toString())) {
+
                     agenda.get(i).setNombre(modificado.getNombre());
                     agenda.get(i).setTelefono(modificado.getTelefono());
                 }

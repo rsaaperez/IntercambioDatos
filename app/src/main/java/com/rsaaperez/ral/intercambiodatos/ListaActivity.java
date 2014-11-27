@@ -26,20 +26,6 @@ public class ListaActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
         contactos = (ArrayList<Agenda>) getIntent().getSerializableExtra("id1");
-        /*
-        ListView lista = (ListView) findViewById(R.id.lista);
-        lista.setAdapter(new ArrayAdapter<Agenda>(this, android.R.layout.simple_list_item_1, contactos));
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Intent intento = new Intent(ListaActivity.this, MyActivity2.class);
-                intento.putExtra("id2", new Agenda (contactos.get(i).getNombre(),contactos.get(i).getTelefono()));
-                intento.putExtra("id3", contactos);
-                startActivityForResult(intento, 1);
-            }
-        });
-        */
         setListAdapter(new ArrayAdapter<Agenda>(this,android.R.layout.simple_list_item_1, contactos));
     }
     public void onListItemClick(ListView parent,View v,int posicion,long id){

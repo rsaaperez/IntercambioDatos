@@ -42,12 +42,6 @@ public class MyActivity2 extends Activity {
                     showToast();
                     return;
                 } else {
-                    for (int i = 0; i < contactos.size(); i++) {
-                        if (contactos.get(i).getNombre().equalsIgnoreCase(contacto.getNombre().toString())) {
-                            contactos.get(i).setNombre(eNombre.getText().toString());
-                            contactos.get(i).setTelefono(Integer.parseInt(eTelefono.getText().toString()));
-                        }
-                    }
                     Agenda modificado = new Agenda(eNombre.getText().toString(),Integer.parseInt(eTelefono.getText().toString()));
                     intento.putExtra("id4", modificado);
                     intento.putExtra("id5",contacto);
