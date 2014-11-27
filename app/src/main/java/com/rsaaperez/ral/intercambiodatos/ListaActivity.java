@@ -31,18 +31,17 @@ public class ListaActivity extends ListActivity {
     public void onListItemClick(ListView parent,View v,int posicion,long id){
         Intent intento = new Intent(ListaActivity.this, MyActivity2.class);
         intento.putExtra("id2", new Agenda (contactos.get(posicion).getNombre(),contactos.get(posicion).getTelefono()));
-        intento.putExtra("id3", contactos);
         startActivityForResult(intento, 1);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Agenda modificado = (Agenda) data.getSerializableExtra("id4");
-            Agenda contacto = (Agenda) data.getSerializableExtra("id5");
+            Agenda modificado = (Agenda) data.getSerializableExtra("id3");
+            Agenda contacto = (Agenda) data.getSerializableExtra("id4");
             Intent intento = new Intent(ListaActivity.this, MyActivity.class);
-            intento.putExtra("id7", contacto);
-            intento.putExtra("id6",modificado);
+            intento.putExtra("id4", contacto);
+            intento.putExtra("id3",modificado);
             setResult(RESULT_OK, intento);
             finish();
         }

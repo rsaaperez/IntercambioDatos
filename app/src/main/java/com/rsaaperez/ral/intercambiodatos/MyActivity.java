@@ -88,8 +88,8 @@ public class MyActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             // cogemos el valor devuelto por la otra actividad
-            Agenda modificado = (Agenda) data.getSerializableExtra("id6");
-            Agenda contacto = (Agenda) data.getSerializableExtra("id7");
+            Agenda modificado = (Agenda) data.getSerializableExtra("id3");
+            Agenda contacto = (Agenda) data.getSerializableExtra("id4");
             for (int i = 0; i < agenda.size(); i++) {
                 if (agenda.get(i).getNombre().equalsIgnoreCase(contacto.getNombre().toString())) {
 

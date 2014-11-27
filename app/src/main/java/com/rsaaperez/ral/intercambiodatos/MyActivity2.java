@@ -28,7 +28,6 @@ public class MyActivity2 extends Activity {
         final EditText eNombre = (EditText) findViewById(R.id.eNombre);
         final EditText eTelefono = (EditText) findViewById(R.id.eTelefono);
         Button bEditar = (Button) findViewById(R.id.bEEditar);
-        final ArrayList<Agenda> contactos = (ArrayList<Agenda>) getIntent().getSerializableExtra("id3");
 
         eNombre.setText(contacto.getNombre());
         eTelefono.setText(String.valueOf(contacto.getTelefono()));
@@ -43,8 +42,8 @@ public class MyActivity2 extends Activity {
                     return;
                 } else {
                     Agenda modificado = new Agenda(eNombre.getText().toString(),Integer.parseInt(eTelefono.getText().toString()));
-                    intento.putExtra("id4", modificado);
-                    intento.putExtra("id5",contacto);
+                    intento.putExtra("id3", modificado);
+                    intento.putExtra("id4",contacto);
                     setResult(RESULT_OK, intento);
                     finish();
                 }
