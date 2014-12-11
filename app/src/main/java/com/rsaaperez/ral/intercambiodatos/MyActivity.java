@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-
+//Vamos a empezar el examen.
 public class MyActivity extends Activity {
 
     public ArrayList<Agenda> agenda = new ArrayList<Agenda>();
