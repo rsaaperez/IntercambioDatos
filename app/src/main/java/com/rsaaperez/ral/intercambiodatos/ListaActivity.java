@@ -52,7 +52,7 @@ public class ListaActivity extends ListActivity {
             public void onClick(View view) {
                 Intent intento = new Intent(ListaActivity.this, BorrarActivity.class);
                 intento.putExtra("idB", new Agenda (contactos.get(posicion).getNombre(),contactos.get(posicion).getTelefono()));
-                startActivityForResult(intento, 1);
+                startActivityForResult(intento, 2);
                 customDialog.dismiss();
 
             }

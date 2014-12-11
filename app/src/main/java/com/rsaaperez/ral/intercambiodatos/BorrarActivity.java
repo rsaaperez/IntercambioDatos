@@ -30,7 +30,7 @@ public class BorrarActivity extends Activity {
             @Override
             public void onClick(View v) {
                 final Intent intento = new Intent(BorrarActivity.this, ListaActivity.class);
-                    Agenda contacto = (Agenda) getIntent().getSerializableExtra("idb");
+                    Agenda contacto = (Agenda) getIntent().getSerializableExtra("idB");
                     intento.putExtra("idb1", contacto);
                     setResult(2, intento);
                     finish();
