@@ -26,6 +26,7 @@ public class MyActivity extends Activity {
         setContentView(R.layout.activity_my);
 
         final Intent intento = new Intent(MyActivity.this, ListaActivity.class);
+        final Intent intento2 = new Intent(MyActivity.this, BorrarActivity.class);
         Button bAnhadir = (Button) findViewById(R.id.bAnhadir);
         Button bListar = (Button) findViewById(R.id.bListar);
 
@@ -105,6 +106,19 @@ public class MyActivity extends Activity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
+        }
+        if (resultCode == 2) {
+            Agenda borrado = (Agenda) data.getSerializableExtra("idb2");
+            for (int i = 0; i < agenda.size(); i++) {
+                if (agenda.get(i).getNombre().equalsIgnoreCase(borrado.getNombre())) {
+                    agenda.remove(i);
+                }
+            }
+            Context context = getApplicationContext();
+            CharSequence text = "Borrado el contacto: Nombre: " + borrado.getNombre() + " Telefono: " + String.valueOf(borrado.getTelefono());
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
     }
 }

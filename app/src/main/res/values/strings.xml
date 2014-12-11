@@ -8,8 +8,12 @@
     <string name="telefono">Teléfono</string>
     <string name="anhadir">Añadir</string>
     <string name="editar">Editar</string>
+    <string name="borrar">Borrar</string>
+    <string name="tborrar">Esta seguro de que desea borrar ese contacto?</string>
     <string name="listar">Ver lista</string>
     <string name="noNameMsg">Falta informacion.</string>
     <string name="title_activity_lista">Lista De Contactos</string>
+    <string name="title_activity_borrar">BorrarActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

@@ -24,6 +24,10 @@
             android:name="com.rsaaperez.ral.intercambiodatos.ListaActivity"
             android:label="@string/title_activity_lista" >
         </activity>
+        <activity
+            android:name="com.rsaaperez.ral.intercambiodatos.BorrarActivity"
+            android:label="@string/title_activity_borrar" >
+        </activity>
     </application>
 
 </manifest>

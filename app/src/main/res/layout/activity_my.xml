@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="@string/anhadir"
             android:id="@+id/bAnhadir"
-            android:layout_weight="1"
+            android:layout_weight="0.25"
             android:layout_gravity="center" />
 
 
@@ -67,6 +67,7 @@
             android:id="@+id/bListar"
             android:layout_weight="1"
             android:layout_gravity="center" />
+
         <Space
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
